@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Your Name – Marketing Portfolio</title>
 <meta name="description" content="Marketing case studies and results by Your Name.">
+<script>
+  /* Apply the saved theme (or the visitor's system setting) before the page paints. */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("theme"); } catch (e) {}
+    if (t !== "light" && t !== "dark") {
+      t = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -19,6 +30,25 @@
     --accent-ink: #ffffff;
     --head: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
     --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --thumb-bg: #dfe5ff;
+    --band-bg: #16202a;
+    --band-ink: #f5f7f6;
+    --band-muted: #b9c2cc;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f151b;
+    --surface: #18212a;
+    --ink: #e8edf1;
+    --muted: #9aa6b2;
+    --line: #2a343e;
+    --accent: #8fa1ff;
+    --accent-ink: #0f151b;
+    --thumb-bg: #1f2a4d;
+    --band-bg: #18212a;
+    --band-ink: #e8edf1;
+    --band-muted: #9aa6b2;
+    color-scheme: dark;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -29,11 +59,14 @@
 
   /* Header */
   header { padding: 20px 0; }
-  header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px 16px; flex-wrap: wrap; }
   .logo { font: 700 20px var(--head); text-decoration: none; }
   nav { display: flex; gap: 24px; }
   nav a { text-decoration: none; color: var(--muted); }
   nav a:hover { color: var(--ink); }
+  nav { align-items: center; }
+  #theme-toggle { font: 500 15px var(--body); padding: 6px 14px; border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px; cursor: pointer; }
+  #theme-toggle:hover { border-color: var(--muted); }
 
   /* Hero */
   .hero { padding: 72px 0 56px; }
@@ -50,7 +83,7 @@
   .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
-  .thumb { aspect-ratio: 16 / 10; background: #dfe5ff; display: grid; place-items: center; font: 700 44px var(--head); color: var(--accent); overflow: hidden; }
+  .thumb { aspect-ratio: 16 / 10; background: var(--thumb-bg); display: grid; place-items: center; font: 700 44px var(--head); color: var(--accent); overflow: hidden; }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
   .meta { color: var(--muted); font-size: 14px; }
@@ -64,10 +97,10 @@
   .about { padding: 72px 0; border-top: 1px solid var(--line); }
   .about .wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; }
   .about p { margin: 0 0 16px; max-width: 60ch; }
-  .contact { background: var(--ink); color: var(--bg); padding: 72px 0; }
+  .contact { background: var(--band-bg); color: var(--band-ink); padding: 72px 0; }
   .contact h2 { margin-bottom: 12px; }
-  .contact p { color: #b9c2cc; margin: 0 0 28px; }
-  .contact .btn { background: var(--bg); color: var(--ink); }
+  .contact p { color: var(--band-muted); margin: 0 0 28px; }
+  .contact .btn { background: var(--band-ink); color: var(--band-bg); }
   footer { padding: 24px 0; color: var(--muted); font-size: 14px; }
 
   @media (max-width: 720px) {
@@ -86,6 +119,7 @@
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <button type="button" id="theme-toggle" aria-label="Switch to dark mode">Dark</button>
     </nav>
   </div>
 </header>
@@ -167,6 +201,22 @@ $("about2").textContent = SITE.about2;
 $("email").textContent = SITE.email;
 $("email").href = "mailto:" + SITE.email;
 $("year").textContent = new Date().getFullYear();
+
+// Dark mode toggle (the choice is remembered in this browser)
+const root = document.documentElement;
+const themeBtn = $("theme-toggle");
+function updateThemeButton() {
+  const dark = root.getAttribute("data-theme") === "dark";
+  themeBtn.textContent = dark ? "Light" : "Dark";
+  themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+}
+themeBtn.addEventListener("click", () => {
+  const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+  try { localStorage.setItem("theme", next); } catch (e) {}
+  updateThemeButton();
+});
+updateThemeButton();
 
 // Small CSV parser (handles quoted cells, commas and line breaks inside quotes)
 function parseCSV(text) {
