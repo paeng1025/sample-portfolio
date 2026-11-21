@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name – Marketing Portfolio</title>
+<meta name="description" content="Marketing case studies and results by Your Name.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7f6;
+    --surface: #ffffff;
+    --ink: #16202a;
+    --muted: #5b6672;
+    --line: #dde3e0;
+    --accent: #2f4bff;
+    --accent-ink: #ffffff;
+    --head: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--body); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header { padding: 20px 0; }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .logo { font: 700 20px var(--head); text-decoration: none; }
+  nav { display: flex; gap: 24px; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; }
+  .hero h1 { font: 700 clamp(40px, 7vw, 84px)/1.02 var(--head); letter-spacing: -0.03em; margin: 0 0 24px; max-width: 14ch; }
+  .hero p { font-size: 20px; color: var(--muted); max-width: 52ch; margin: 0 0 32px; }
+  .btn { display: inline-block; padding: 14px 24px; background: var(--accent); color: var(--accent-ink); border-radius: 8px; text-decoration: none; font-weight: 500; }
+  .btn:hover { filter: brightness(1.1); }
+
+  /* Work */
+  h2 { font: 700 clamp(28px, 4vw, 40px)/1.1 var(--head); letter-spacing: -0.02em; margin: 0 0 24px; }
+  .work { padding: 40px 0 72px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .filters button { font: 500 15px var(--body); padding: 8px 16px; border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px; cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+  .thumb { aspect-ratio: 16 / 10; background: #dfe5ff; display: grid; place-items: center; font: 700 44px var(--head); color: var(--accent); overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .meta { color: var(--muted); font-size: 14px; }
+  .card h3 { font: 700 22px/1.2 var(--head); margin: 0; }
+  .result { font: 700 18px var(--head); color: var(--accent); margin-top: 6px; }
+  .card p { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+  .card .more { margin-top: auto; padding-top: 14px; font-weight: 500; }
+  .status { color: var(--muted); padding: 24px 0; }
+
+  /* About + contact */
+  .about { padding: 72px 0; border-top: 1px solid var(--line); }
+  .about .wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; }
+  .about p { margin: 0 0 16px; max-width: 60ch; }
+  .contact { background: var(--ink); color: var(--bg); padding: 72px 0; }
+  .contact h2 { margin-bottom: 12px; }
+  .contact p { color: #b9c2cc; margin: 0 0 28px; }
+  .contact .btn { background: var(--bg); color: var(--ink); }
+  footer { padding: 24px 0; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 720px) {
+    .about .wrap { grid-template-columns: 1fr; gap: 16px; }
+    nav { gap: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" id="logo">Your Name</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1 id="headline">Marketing that brings in customers.</h1>
+      <p id="subhead">I help [type of business] grow with [your services, e.g. SEO, paid ads, email, social]. Here is some of my recent work.</p>
+      <a class="btn" href="#work">See my work</a>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects by category"></div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+      <p class="status" id="status">Loading projects…</p>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <div>
+        <p id="about1">[Write 2–3 sentences about who you are, how long you have been in marketing, and what kind of clients you work with.]</p>
+        <p id="about2">[Add one sentence about how you work, for example: I start with your goals, set clear targets, and report on results every month.]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Let’s talk about your project</h2>
+      <p>Tell me what you want to achieve and I’ll reply within two business days.</p>
+      <a class="btn" id="email" href="mailto:hello@example.com">hello@example.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> <span id="footname">Your Name</span></div>
+</footer>
+
+<script>
+/* ============ 1. EDIT THESE ============ */
+const SITE = {
+  name: "Your Name",
+  headline: "Marketing that brings in customers.",
+  subhead: "I help [type of business] grow with [your services, e.g. SEO, paid ads, email, social]. Here is some of my recent work.",
+  about1: "[Write 2–3 sentences about who you are, how long you have been in marketing, and what kind of clients you work with.]",
+  about2: "[Add one sentence about how you work, for example: I start with your goals, set clear targets, and report on results every month.]",
+  email: "hello@example.com"
+};
+
+// Paste your Google Sheet's "Publish to web" CSV link here (see steps in the chat).
+const SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_CSV_LINK_HERE";
+
+/* Shown until you add your sheet link, or if the sheet can't be loaded. */
+const SAMPLE_PROJECTS = [
+  { title: "Project name one", client: "Client A", category: "SEO", result: "+120% organic traffic", description: "One or two sentences on the goal, what you did, and the outcome.", image_url: "", link: "" },
+  { title: "Project name two", client: "Client B", category: "Paid ads", result: "3.5x return on ad spend", description: "One or two sentences on the goal, what you did, and the outcome.", image_url: "", link: "" },
+  { title: "Project name three", client: "Client C", category: "Email", result: "42% open rate", description: "One or two sentences on the goal, what you did, and the outcome.", image_url: "", link: "" },
+  { title: "Project name four", client: "Client D", category: "Social media", result: "+8,000 followers in 90 days", description: "One or two sentences on the goal, what you did, and the outcome.", image_url: "", link: "" }
+];
+/* ======================================= */
+
+const $ = (id) => document.getElementById(id);
+
+// Fill in the text fields
+document.title = SITE.name + " – Marketing Portfolio";
+$("logo").textContent = SITE.name;
+$("footname").textContent = SITE.name;
+$("headline").textContent = SITE.headline;
+$("subhead").textContent = SITE.subhead;
+$("about1").textContent = SITE.about1;
+$("about2").textContent = SITE.about2;
+$("email").textContent = SITE.email;
+$("email").href = "mailto:" + SITE.email;
+$("year").textContent = new Date().getFullYear();
+
+// Small CSV parser (handles quoted cells, commas and line breaks inside quotes)
+function parseCSV(text) {
+  const rows = []; let row = [], cell = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+      else if (c === '"') q = false;
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ",") { row.push(cell); cell = ""; }
+    else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(cell); rows.push(row); row = []; cell = "";
+    } else cell += c;
+  }
+  if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+  const head = rows.shift().map((h) => h.trim().toLowerCase());
+  return rows
+    .filter((r) => r.some((v) => v.trim() !== ""))
+    .map((r) => Object.fromEntries(head.map((h, i) => [h, (r[i] || "").trim()])));
+}
+
+async function loadProjects() {
+  if (!SHEET_CSV_URL || SHEET_CSV_URL.startsWith("PASTE_")) return SAMPLE_PROJECTS;
+  try {
+    const res = await fetch(SHEET_CSV_URL);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const list = parseCSV(await res.text());
+    return list.length ? list : SAMPLE_PROJECTS;
+  } catch (err) {
+    console.error("Could not load the Google Sheet:", err);
+    return SAMPLE_PROJECTS;
+  }
+}
+
+function safeUrl(u) { return /^https?:\/\//i.test(u) ? u : ""; }
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text) e.textContent = text;
+  return e;
+}
+
+function card(p) {
+  const c = el("article", "card");
+  const thumb = el("div", "thumb");
+  const img = safeUrl(p.image_url);
+  if (img) {
+    const i = document.createElement("img");
+    i.src = img; i.alt = p.title || ""; i.loading = "lazy";
+    thumb.appendChild(i);
+  } else {
+    thumb.textContent = (p.title || "?").trim().charAt(0).toUpperCase();
+    thumb.setAttribute("aria-hidden", "true");
+  }
+  const body = el("div", "card-body");
+  body.appendChild(el("div", "meta", [p.client, p.category].filter(Boolean).join(", ")));
+  body.appendChild(el("h3", "", p.title));
+  if (p.result) body.appendChild(el("div", "result", p.result));
+  if (p.description) body.appendChild(el("p", "", p.description));
+  const link = safeUrl(p.link);
+  if (link) {
+    const a = el("a", "more", "View case study");
+    a.href = link; a.target = "_blank"; a.rel = "noopener";
+    body.appendChild(a);
+  }
+  c.append(thumb, body);
+  return c;
+}
+
+function render(projects, active) {
+  const grid = $("grid");
+  grid.replaceChildren(...projects.filter((p) => active === "All" || p.category === active).map(card));
+}
+
+(async function init() {
+  const projects = await loadProjects();
+  const cats = ["All", ...new Set(projects.map((p) => p.category).filter(Boolean))];
+  const filters = $("filters");
+  cats.forEach((name) => {
+    const b = el("button", "", name);
+    b.type = "button";
+    b.setAttribute("aria-pressed", name === "All");
+    b.addEventListener("click", () => {
+      filters.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+      render(projects, name);
+    });
+    filters.appendChild(b);
+  });
+  $("status").remove();
+  render(projects, "All");
+})();
+</script>
+</body>
+</html>
